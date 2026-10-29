@@ -4,12 +4,12 @@ import { useState } from "react";
 import { FORETAG } from "@/lib/foretag";
 
 const VANSTER = [
-  { to: "/", label: "Hem" },
-  { to: "/om-oss", label: "Om oss" },
-  { to: "/priser", label: "Priser" },
+  { to: "/", label: "Home" },
+  { to: "/atelier", label: "Atelier" },
+  { to: "/bespoke-shirt", label: "Bespoke Shirt" },
 ] as const;
 
-const HOGER = [{ to: "/kontakt", label: "Kontakt" }] as const;
+const HOGER = [{ to: "/contact", label: "Contact" }] as const;
 
 const ALLA = [...VANSTER, ...HOGER];
 
@@ -25,7 +25,7 @@ export function Header() {
       <div className="relative mx-auto max-w-6xl">
         <div className="flex h-16 items-center justify-between gap-6 rounded-full bg-primary px-6 text-primary-foreground shadow-lg shadow-black/10 md:grid md:grid-cols-[1fr_auto_1fr] md:px-6 lg:px-10">
           {/* Vänster */}
-          <nav className="hidden items-center gap-5 md:flex lg:gap-8" aria-label="Huvudmeny">
+          <nav className="hidden items-center gap-5 md:flex lg:gap-8" aria-label="Main menu">
             {VANSTER.map((l) => (
               <Link
                 key={l.to}
@@ -45,16 +45,16 @@ export function Header() {
             className="flex flex-col items-start leading-none md:items-center"
             onClick={() => setOppen(false)}
           >
-            <span className="font-display text-lg font-medium tracking-tight">RT Anderssons</span>
+            <span className="font-display text-lg font-medium tracking-tight">A.W. Bauer &amp; Co.</span>
             <span className="mt-1 text-[0.65rem] uppercase tracking-[0.18em] text-primary-foreground/70">
-              Måleri · {FORETAG.ort}
+              {FORETAG.ort} · Since {FORETAG.sedan}
             </span>
           </Link>
 
           {/* Höger */}
           <nav
             className="hidden items-center justify-end gap-4 md:flex lg:gap-6"
-            aria-label="Sekundär meny"
+            aria-label="Secondary menu"
           >
             {HOGER.map((l) => (
               <Link
@@ -68,31 +68,31 @@ export function Header() {
             ))}
             <a
               href={`tel:${FORETAG.telefonLank}`}
-              aria-label={`Ring ${FORETAG.telefon}`}
+              aria-label={`Call ${FORETAG.telefon}`}
               className="flex items-center gap-2 whitespace-nowrap text-sm font-medium text-primary-foreground"
             >
               <Phone className="size-4" aria-hidden="true" />
               <span className="hidden xl:inline">{FORETAG.telefon}</span>
             </a>
             <Link
-              to="/offert"
+              to="/appointment"
               className="rounded-full bg-primary-foreground px-5 py-2.5 text-sm whitespace-nowrap font-medium text-primary transition-opacity duration-300 hover:opacity-90"
             >
-              Begär offert
+              Book a Consultation
             </Link>
           </nav>
 
           <div className="flex items-center gap-5 md:hidden">
             <a
               href={`tel:${FORETAG.telefonLank}`}
-              aria-label={`Ring ${FORETAG.telefon}`}
+              aria-label={`Call ${FORETAG.telefon}`}
               className="text-primary-foreground"
             >
               <Phone className="size-5" aria-hidden="true" />
             </a>
             <button
               type="button"
-              aria-label={oppen ? "Stäng meny" : "Öppna meny"}
+              aria-label={oppen ? "Close menu" : "Open menu"}
               aria-expanded={oppen}
               onClick={() => setOppen((o) => !o)}
             >
@@ -110,7 +110,7 @@ export function Header() {
         {oppen && (
           <nav
             className="absolute inset-x-0 top-full mt-2 flex flex-col rounded-3xl bg-primary px-6 py-4 text-primary-foreground shadow-lg shadow-black/10 md:hidden"
-            aria-label="Mobilmeny"
+            aria-label="Mobile menu"
           >
             {ALLA.map((l) => (
               <Link
@@ -125,11 +125,11 @@ export function Header() {
               </Link>
             ))}
             <Link
-              to="/offert"
+              to="/appointment"
               onClick={() => setOppen(false)}
               className="mt-3 rounded-full bg-primary-foreground px-5 py-3 text-center text-sm font-medium text-primary"
             >
-              Begär offert
+              Book a Consultation
             </Link>
           </nav>
         )}

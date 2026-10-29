@@ -1,18 +1,26 @@
+// Company details for A.W. Bauer & Co. — single source for header, footer, contact and schema.
 export const FORETAG = {
-  namn: "RT Anderssons Måleri AB",
-  kortnamn: "RT Anderssons",
-  ort: "Sundsvall",
-  garantiAr: 3,
-  telefon: "060-57 92 42",
-  telefonLank: "+4660579242",
-  mobil: "070-316 48 80",
-  mobilLank: "+46703164880",
-  epost: "kent@kentwidellmalare.se",
-  adress: "Västra Vägen 88, 857 40 Sundsvall",
-  orgnr: "556416-1882",
-  oppettider: [
-    { dag: "Måndag–fredag", tid: "07.00–17.00" },
-    { dag: "Lördag", tid: "Stängt" },
-    { dag: "Söndag", tid: "Stängt" },
-  ],
+  namn: "A.W. Bauer & Co.",
+  juridisktNamn: "Bauer & Co Aktiebolag",
+  sedan: 1863,
+  gatuadress: "Brunnsgatan 4",
+  postnummer: "111 38",
+  ort: "Stockholm",
+  land: "Sweden",
+  adress: "Brunnsgatan 4, 111 38 Stockholm, Sweden",
+  telefon: "+46 8 104780",
+  telefonLank: "+468104780",
+  epost: "contact@awbauerco.com",
+  orgnr: "556307-4540",
+  instagram: "https://www.instagram.com/a.w.bauer.co/",
+  facebook: "https://www.facebook.com/awbauerco",
+  karta:
+    "https://www.google.com/maps/search/?api=1&query=A.W.+Bauer+%26+Co+Brunnsgatan+4+Stockholm",
+} as const;
+
+// Verbatim from awbauerco.com (spelling of "Stockholm" corrected).
+export const TAGLINE = {
+  rad1: "A.W.Bauer & Co is a modern bespoke-only service.",
+  rad2: "Located at Brunnsgatan 4 in Stockholm, Sweden.",
+  rad3: "We have outfitted men of distinction since 1863.",
 } as const;

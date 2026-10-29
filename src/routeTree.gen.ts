@@ -10,92 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
-import { Route as KontaktRouteImport } from './routes/kontakt'
-import { Route as OffertRouteImport } from './routes/offert'
-import { Route as OmOssRouteImport } from './routes/om-oss'
-import { Route as PriserRouteImport } from './routes/priser'
+import { Route as AppointmentRouteImport } from './routes/appointment'
+import { Route as AtelierRouteImport } from './routes/atelier'
+import { Route as BespokeShirtRouteImport } from './routes/bespoke-shirt'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IntegritetspolicyRoute = IntegritetspolicyRouteImport.update({
-  id: '/integritetspolicy',
-  path: '/integritetspolicy',
+const AppointmentRoute = AppointmentRouteImport.update({
+  id: '/appointment',
+  path: '/appointment',
   getParentRoute: () => rootRouteImport,
 } as any)
-const KontaktRoute = KontaktRouteImport.update({
-  id: '/kontakt',
-  path: '/kontakt',
+const AtelierRoute = AtelierRouteImport.update({
+  id: '/atelier',
+  path: '/atelier',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OffertRoute = OffertRouteImport.update({
-  id: '/offert',
-  path: '/offert',
+const BespokeShirtRoute = BespokeShirtRouteImport.update({
+  id: '/bespoke-shirt',
+  path: '/bespoke-shirt',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OmOssRoute = OmOssRouteImport.update({
-  id: '/om-oss',
-  path: '/om-oss',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PriserRoute = PriserRouteImport.update({
-  id: '/priser',
-  path: '/priser',
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/integritetspolicy': typeof IntegritetspolicyRoute
-  '/kontakt': typeof KontaktRoute
-  '/offert': typeof OffertRoute
-  '/om-oss': typeof OmOssRoute
-  '/priser': typeof PriserRoute
+  '/appointment': typeof AppointmentRoute
+  '/atelier': typeof AtelierRoute
+  '/bespoke-shirt': typeof BespokeShirtRoute
+  '/contact': typeof ContactRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/integritetspolicy': typeof IntegritetspolicyRoute
-  '/kontakt': typeof KontaktRoute
-  '/offert': typeof OffertRoute
-  '/om-oss': typeof OmOssRoute
-  '/priser': typeof PriserRoute
+  '/appointment': typeof AppointmentRoute
+  '/atelier': typeof AtelierRoute
+  '/bespoke-shirt': typeof BespokeShirtRoute
+  '/contact': typeof ContactRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/integritetspolicy': typeof IntegritetspolicyRoute
-  '/kontakt': typeof KontaktRoute
-  '/offert': typeof OffertRoute
-  '/om-oss': typeof OmOssRoute
-  '/priser': typeof PriserRoute
+  '/appointment': typeof AppointmentRoute
+  '/atelier': typeof AtelierRoute
+  '/bespoke-shirt': typeof BespokeShirtRoute
+  '/contact': typeof ContactRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/integritetspolicy' | '/kontakt' | '/offert' | '/om-oss' | '/priser'
+    | '/'
+    | '/appointment'
+    | '/atelier'
+    | '/bespoke-shirt'
+    | '/contact'
+    | '/privacy-policy'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/integritetspolicy' | '/kontakt' | '/offert' | '/om-oss' | '/priser'
+    | '/'
+    | '/appointment'
+    | '/atelier'
+    | '/bespoke-shirt'
+    | '/contact'
+    | '/privacy-policy'
   id:
     | '__root__'
     | '/'
-    | '/integritetspolicy'
-    | '/kontakt'
-    | '/offert'
-    | '/om-oss'
-    | '/priser'
+    | '/appointment'
+    | '/atelier'
+    | '/bespoke-shirt'
+    | '/contact'
+    | '/privacy-policy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  IntegritetspolicyRoute: typeof IntegritetspolicyRoute
-  KontaktRoute: typeof KontaktRoute
-  OffertRoute: typeof OffertRoute
-  OmOssRoute: typeof OmOssRoute
-  PriserRoute: typeof PriserRoute
+  AppointmentRoute: typeof AppointmentRoute
+  AtelierRoute: typeof AtelierRoute
+  BespokeShirtRoute: typeof BespokeShirtRoute
+  ContactRoute: typeof ContactRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -107,39 +117,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/integritetspolicy': {
-      id: '/integritetspolicy'
-      path: '/integritetspolicy'
-      fullPath: '/integritetspolicy'
-      preLoaderRoute: typeof IntegritetspolicyRouteImport
+    '/appointment': {
+      id: '/appointment'
+      path: '/appointment'
+      fullPath: '/appointment'
+      preLoaderRoute: typeof AppointmentRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/kontakt': {
-      id: '/kontakt'
-      path: '/kontakt'
-      fullPath: '/kontakt'
-      preLoaderRoute: typeof KontaktRouteImport
+    '/atelier': {
+      id: '/atelier'
+      path: '/atelier'
+      fullPath: '/atelier'
+      preLoaderRoute: typeof AtelierRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/offert': {
-      id: '/offert'
-      path: '/offert'
-      fullPath: '/offert'
-      preLoaderRoute: typeof OffertRouteImport
+    '/bespoke-shirt': {
+      id: '/bespoke-shirt'
+      path: '/bespoke-shirt'
+      fullPath: '/bespoke-shirt'
+      preLoaderRoute: typeof BespokeShirtRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/om-oss': {
-      id: '/om-oss'
-      path: '/om-oss'
-      fullPath: '/om-oss'
-      preLoaderRoute: typeof OmOssRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/priser': {
-      id: '/priser'
-      path: '/priser'
-      fullPath: '/priser'
-      preLoaderRoute: typeof PriserRouteImport
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -147,11 +157,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  IntegritetspolicyRoute: IntegritetspolicyRoute,
-  KontaktRoute: KontaktRoute,
-  OffertRoute: OffertRoute,
-  OmOssRoute: OmOssRoute,
-  PriserRoute: PriserRoute,
+  AppointmentRoute: AppointmentRoute,
+  AtelierRoute: AtelierRoute,
+  BespokeShirtRoute: BespokeShirtRoute,
+  ContactRoute: ContactRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

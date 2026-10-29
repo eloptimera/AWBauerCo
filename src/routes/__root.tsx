@@ -79,15 +79,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "RT Anderssons Måleri AB – Målare i Sundsvall" },
+      { title: "A.W. Bauer & Co. – Bespoke Tailoring in Stockholm since 1863" },
       {
         name: "description",
         content:
-          "Måleri med hantverksmässig omsorg i Sundsvall. Invändig målning, fasad, tapetsering och snickeri. Kostnadsfri offert och 3 års garanti.",
+          "A.W.Bauer & Co is a modern bespoke-only service at Brunnsgatan 4 in Stockholm. Bespoke suits, coats, shirts and knitwear. We have outfitted men of distinction since 1863.",
       },
-      { property: "og:site_name", content: "RT Anderssons Måleri AB" },
+      { property: "og:site_name", content: "A.W. Bauer & Co." },
       { property: "og:type", content: "website" },
-      { property: "og:locale", content: "sv_SE" },
+      { property: "og:locale", content: "en_GB" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -111,21 +111,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: "RT Anderssons Måleri AB",
+          "@type": "ClothingStore",
+          name: "A.W. Bauer & Co.",
+          legalName: "Bauer & Co Aktiebolag",
           description:
-            "Måleriföretag i Sundsvall. Invändig målning, fasadmålning, tapetsering, spackling och snickerimålning.",
-          telephone: "+4660579242",
-          email: "kent@kentwidellmalare.se",
+            "A modern bespoke-only service. Bespoke tailoring of suits, coats, shirts and knitwear in Stockholm since 1863.",
+          url: "https://www.awbauerco.com",
+          telephone: "+468104780",
+          email: "contact@awbauerco.com",
+          foundingDate: "1863",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Västra Vägen 88",
-            postalCode: "857 40",
-            addressLocality: "Sundsvall",
+            streetAddress: "Brunnsgatan 4",
+            postalCode: "111 38",
+            addressLocality: "Stockholm",
             addressCountry: "SE",
           },
-          areaServed: ["Sundsvall", "Timrå", "Härnösand", "Matfors", "Njurunda"],
-          openingHours: "Mo-Fr 07:00-17:00",
+          sameAs: [
+            "https://www.instagram.com/a.w.bauer.co/",
+            "https://www.facebook.com/awbauerco",
+          ],
         }),
       },
     ],
@@ -138,7 +143,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="sv">
+    <html lang="en">
       <head>
         <HeadContent />
       </head>
