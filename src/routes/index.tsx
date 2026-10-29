@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useCallback, useRef, useState } from "react";
-import { Tjader, TjaderSketch, Wordmark } from "@/components/Brand";
+import { Tjader, TjaderFylld, TjaderSketch, Wordmark } from "@/components/Brand";
 import { Reveal } from "@/components/Reveal";
 import { Prislista } from "@/components/Prislista";
 import { useActiveStep, useScrollProgress } from "@/hooks/use-scroll-progress";
@@ -137,14 +137,12 @@ function SinceSektion() {
           <div className="relative mx-auto w-[min(44vw,22rem)] text-ink md:w-[min(62vw,22rem)]">
             <TjaderSketch
               className="w-full text-ink/70"
-              style={{ opacity: "calc(1 - var(--p, 0) * 1.6)" }}
+              style={{ opacity: "calc(1 - var(--p, 0) * 1.2)" }}
             />
-            <div
-              className="absolute inset-0 flex items-end justify-center"
+            <TjaderFylld
+              className="absolute inset-0 w-full text-green"
               style={{ clipPath: "inset(max(0%, calc(100% - var(--p, 0) * 140%)) 0 0 0)" }}
-            >
-              <Tjader className="w-[78%] text-green" />
-            </div>
+            />
           </div>
 
           <div style={{ opacity: "calc(0.25 + var(--p, 0) * 1.5)" }}>

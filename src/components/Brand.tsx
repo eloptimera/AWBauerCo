@@ -3,6 +3,7 @@ import wordmarkUrl from "@/assets/brand/wordmark.svg";
 import wordmark1863Url from "@/assets/brand/wordmark-1863.svg";
 import tjaderUrl from "@/assets/brand/tjader.svg";
 import sketchUrl from "@/assets/brand/tjader-sketch.svg";
+import fylldUrl from "@/assets/brand/tjader-fylld.svg";
 
 /*
  * AW's marks, vectorised from their own artwork. They are drawn as CSS masks so they
@@ -71,5 +72,10 @@ export function Tjader(props: { className?: string; label?: string; style?: CSSP
 }
 
 export function TjaderSketch(props: { className?: string; style?: CSSProperties }) {
-  return <Mark src={sketchUrl} ratio={1248 / 924} {...props} />;
+  return <Mark src={sketchUrl} ratio={1035 / 916} {...props} />;
+}
+
+/** The filled version of the sketch, drawn on the exact same frame so the two line up 1:1. */
+export function TjaderFylld(props: { className?: string; style?: CSSProperties }) {
+  return <Mark src={fylldUrl} ratio={1035 / 916} {...props} />;
 }
