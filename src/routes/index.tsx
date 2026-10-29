@@ -388,7 +388,7 @@ function Avslut() {
   return (
     <section className="paper py-28 sm:py-40" aria-labelledby="avslut-rubrik">
       <div className="container-page flex flex-col items-center text-center">
-        <Tjader className="w-14 text-green" />
+        <Tjader className="w-20 text-green" />
         <h2 id="avslut-rubrik" className="mt-10 max-w-2xl text-3xl sm:text-4xl">
           {TAGLINE.rad2}
         </h2>

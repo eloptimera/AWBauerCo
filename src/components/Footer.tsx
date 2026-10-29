@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="study">
       <div className="container-page pt-24 pb-10">
         <div className="flex flex-col items-center text-center">
-          <Tjader className="w-16 text-brass" />
+          <Tjader className="w-20 text-brass" />
           <Wordmark1863 className="mt-8 w-64 sm:w-80" />
           <p className="voice mt-8 max-w-md text-lg text-ivory/75">{TAGLINE.rad3}</p>
         </div>

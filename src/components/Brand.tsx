@@ -1,7 +1,6 @@
 import type { CSSProperties } from "react";
 import wordmarkUrl from "@/assets/brand/wordmark.svg";
 import wordmark1863Url from "@/assets/brand/wordmark-1863.svg";
-import tjaderUrl from "@/assets/brand/tjader.svg";
 import sketchUrl from "@/assets/brand/tjader-sketch.svg";
 import fylldUrl from "@/assets/brand/tjader-fylld.svg";
 
@@ -67,8 +66,9 @@ export function Wordmark1863(props: { className?: string; label?: string }) {
   );
 }
 
+/** The capercaillie emblem — the filled version that matches the hand-drawn sketch. */
 export function Tjader(props: { className?: string; label?: string; style?: CSSProperties }) {
-  return <Mark src={tjaderUrl} ratio={966 / 888} {...props} />;
+  return <Mark src={fylldUrl} ratio={1035 / 916} {...props} />;
 }
 
 export function TjaderSketch(props: { className?: string; style?: CSSProperties }) {

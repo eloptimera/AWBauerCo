@@ -64,7 +64,7 @@ function Appointment() {
     return (
       <section className="paper flex min-h-[80vh] items-center pt-32 pb-24">
         <div className="container-page flex flex-col items-center text-center">
-          <Tjader className="w-14 text-green" />
+          <Tjader className="w-20 text-green" />
           <h1 className="mt-10 text-4xl">Thank you</h1>
           <p className="voice measure mt-6 text-xl text-ink-soft">
             Your request has been received. We will be in touch to confirm your appointment. You are

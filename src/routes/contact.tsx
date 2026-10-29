@@ -132,7 +132,7 @@ function Contact() {
         <div className="container-page">
           {klart ? (
             <div className="mx-auto max-w-xl text-center">
-              <Tjader className="mx-auto w-14 text-green" />
+              <Tjader className="mx-auto w-20 text-green" />
               <h2 className="mt-10 text-3xl">Thank you for your message</h2>
               <p className="voice mt-4 text-xl text-ink-soft">We will get back to you shortly.</p>
             </div>
