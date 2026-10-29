@@ -6,7 +6,8 @@ import { ATELIER_AVSNITT, ATELIER_INTRO, BESPOKE_SHIRT, PRISER } from "@/lib/inn
 
 import fitting from "@/assets/photos/fitting.jpg";
 import cutter from "@/assets/photos/cutter.jpg";
-import suit from "@/assets/photos/suit.jpg";
+import workroom from "@/assets/photos/workroom.jpg";
+import bomber from "@/assets/photos/bomber.jpg";
 import workwear from "@/assets/photos/workwear.jpg";
 
 export const Route = createFileRoute("/atelier")({
@@ -25,8 +26,11 @@ export const Route = createFileRoute("/atelier")({
 
 const BILDER: Record<string, { src: string; alt: string } | undefined> = {
   fitting: { src: fitting, alt: "A client being measured across the back during a fitting" },
-  cutting: { src: cutter, alt: "A cutter at his bench with shears and tape measure" },
-  tailoring: { src: suit, alt: "A finished grey suit worn in the workroom" },
+  cutting: {
+    src: workroom,
+    alt: "A cutter in the workroom, paper master patterns hanging on the wall behind him",
+  },
+  tailoring: { src: cutter, alt: "A tailor at his bench with shears and tape measure" },
   shirts: {
     src: workwear,
     alt: "A white bespoke shirt cuff beneath a blue workwear jacket, a tennis ball in the pocket",
@@ -130,6 +134,12 @@ function Atelier() {
               {PRISER.rubrik}
             </h2>
             <p className="voice mt-8 text-lg text-ivory/75">{PRISER.text}</p>
+            <img
+              src={bomber}
+              alt="A camel bespoke jacket on a tailor's dummy, seen from the back"
+              loading="lazy"
+              className="mt-12 hidden aspect-[2/3] w-full object-cover md:block"
+            />
           </div>
           <div className="md:col-span-7 md:col-start-6">
             <Prislista />

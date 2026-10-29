@@ -8,10 +8,12 @@ import { FORETAG, TAGLINE } from "@/lib/foretag";
 import { ATELIER_AVSNITT, ATELIER_INTRO, BESPOKE_SHIRT, HEAD_CUTTER, PRISER } from "@/lib/innehall";
 
 import fitting from "@/assets/photos/fitting.jpg";
-import fittingSmall from "@/assets/photos/fitting-1200.jpg";
-import cutter from "@/assets/photos/cutter.jpg";
+import fittingSmall from "@/assets/photos/fitting-800.jpg";
+import cutting from "@/assets/photos/cutting.jpg";
+import pinstripe from "@/assets/photos/pinstripe.jpg";
+import shears from "@/assets/photos/shears.jpg";
+import bomber from "@/assets/photos/bomber.jpg";
 import portrait from "@/assets/photos/portrait.jpg";
-import suit from "@/assets/photos/suit.jpg";
 import workwear from "@/assets/photos/workwear.jpg";
 
 export const Route = createFileRoute("/")({
@@ -29,7 +31,7 @@ export const Route = createFileRoute("/")({
         rel: "preload",
         as: "image",
         href: fitting,
-        imageSrcSet: `${fittingSmall} 1200w, ${fitting} 2400w`,
+        imageSrcSet: `${fittingSmall} 800w, ${fitting} 1254w`,
         imageSizes: "100vw",
       },
     ],
@@ -47,10 +49,14 @@ const PROCESS = [
   },
   {
     ...avsnitt("cutting"),
-    bild: cutter,
-    alt: "A cutter at his bench with shears and tape measure",
+    bild: cutting,
+    alt: "Hands cutting dark cloth with tailor's shears on the cutting table",
   },
-  { ...avsnitt("tailoring"), bild: suit, alt: "A finished grey suit worn in the workroom" },
+  {
+    ...avsnitt("tailoring"),
+    bild: pinstripe,
+    alt: "A finished chalk-stripe suit worn with a denim shirt and knitted tie",
+  },
 ];
 
 const ROMERSKA = ["I", "II", "III"];
@@ -62,6 +68,7 @@ function Start() {
       <SinceSektion />
       <HeadCutter />
       <Process />
+      <Saxen />
       <ShirtsOchKnitwear />
       <Priser />
       <Avslut />
@@ -80,7 +87,7 @@ function Hero() {
       <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden">
         <img
           src={fitting}
-          srcSet={`${fittingSmall} 1200w, ${fitting} 2400w`}
+          srcSet={`${fittingSmall} 800w, ${fitting} 1254w`}
           sizes="100vw"
           alt="A client being measured for a bespoke coat"
           fetchPriority="high"
@@ -268,6 +275,40 @@ function Process() {
   );
 }
 
+/* ------------------------------------------- A pause: the shears, held back */
+
+function Saxen() {
+  const ref = useRef<HTMLElement>(null);
+  useScrollProgress(ref, 1);
+
+  return (
+    <section ref={ref} className="relative h-[160vh] bg-green-deep" aria-label="The atelier">
+      <div className="sticky top-0 flex h-svh items-end overflow-hidden">
+        <img
+          src={shears}
+          alt="A tailor seen from behind, holding large shears behind his back"
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover object-[50%_88%] will-change-transform"
+          style={{ transform: "scale(calc(1.12 - 0.12 * var(--p, 0)))" }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-linear-to-t from-green-deep/85 via-green-deep/10 to-transparent"
+        />
+        <p
+          className="voice relative container-page pb-16 text-3xl text-ivory sm:pb-24 sm:text-5xl md:text-right"
+          style={{
+            opacity: "calc(var(--p, 0) * 2.2 - 0.3)",
+            transform: "translateY(calc((1 - var(--p, 0)) * 3vh))",
+          }}
+        >
+          Unflaggingly adapted to your vision.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* ------------------------------------------------------- Shirts & knitwear */
 
 function ShirtsOchKnitwear() {
@@ -321,6 +362,14 @@ function Priser() {
             {PRISER.rubrik}
           </h2>
           <p className="voice mt-8 text-lg text-ivory/75">{PRISER.text}</p>
+          <Reveal className="mt-12 hidden md:block">
+            <img
+              src={bomber}
+              alt="A camel bespoke jacket on a tailor's dummy, seen from the back"
+              loading="lazy"
+              className="aspect-[2/3] w-full object-cover"
+            />
+          </Reveal>
         </div>
         <div className="md:col-span-7 md:col-start-6">
           <Prislista />
