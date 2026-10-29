@@ -5,6 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { FORETAG } from "@/lib/foretag";
 import { BESPOKE_SHIRT, HEAD_CUTTER, PRISER } from "@/lib/innehall";
 import { skickaMeddelande } from "@/lib/skicka";
+import { FormFalt } from "@/components/FormFalt";
 
 export const Route = createFileRoute("/appointment")({
   head: () => ({
@@ -47,7 +48,7 @@ function Appointment() {
       .join("\n");
     try {
       await skickaMeddelande({
-        namn: String(fd.get("namn") ?? ""),
+        namn: `${fd.get("namn") ?? ""} ${fd.get("efternamn") ?? ""}`.trim(),
         epost: String(fd.get("epost") ?? ""),
         telefon: String(fd.get("telefon") ?? ""),
         meddelande,
@@ -98,45 +99,14 @@ function Appointment() {
             onSubmit={onSubmit}
             className="grid max-w-3xl gap-6 rounded-sm border border-line bg-card p-8 sm:p-10"
           >
-            <div className="grid gap-6 sm:grid-cols-2">
-              <div>
-                <label htmlFor="namn" className="text-sm font-medium">
-                  Name
-                </label>
-                <input id="namn" name="namn" required autoComplete="name" className="field mt-2" />
-              </div>
-              <div>
-                <label htmlFor="telefon" className="text-sm font-medium">
-                  Phone
-                </label>
-                <input
-                  id="telefon"
-                  name="telefon"
-                  type="tel"
-                  required
-                  autoComplete="tel"
-                  className="field mt-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="epost" className="text-sm font-medium">
-                  Email
-                </label>
-                <input
-                  id="epost"
-                  name="epost"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  className="field mt-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="datum" className="text-sm font-medium">
-                  Preferred date (optional)
-                </label>
-                <input id="datum" name="datum" type="date" className="field mt-2" />
-              </div>
+            <h2 className="text-2xl">What can we do for you?</h2>
+            <FormFalt meddelandeKravs={false} />
+
+            <div className="sm:max-w-xs">
+              <label htmlFor="datum" className="text-sm font-medium">
+                Preferred date (optional)
+              </label>
+              <input id="datum" name="datum" type="date" className="field mt-2" />
             </div>
 
             <fieldset>
@@ -163,13 +133,6 @@ function Appointment() {
               </div>
             </fieldset>
 
-            <div>
-              <label htmlFor="meddelande" className="text-sm font-medium">
-                Message (optional)
-              </label>
-              <textarea id="meddelande" name="meddelande" rows={5} className="field mt-2" />
-            </div>
-
             <label className="flex items-start gap-3 text-sm text-muted-foreground">
               <input type="checkbox" required className="mt-1 accent-primary" />
               <span>
@@ -186,7 +149,7 @@ function Appointment() {
 
             <div>
               <button type="submit" disabled={skickar} className="btn-base btn-primary">
-                {skickar ? "Sending …" : "Send request"}
+                {skickar ? "Sending …" : "Send"}
               </button>
             </div>
           </form>

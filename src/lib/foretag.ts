@@ -14,6 +14,13 @@ export const FORETAG = {
   orgnr: "556307-4540",
   instagram: "https://www.instagram.com/a.w.bauer.co/",
   facebook: "https://www.facebook.com/awbauerco",
+  // Regular hours from Google Business. Saturday is shown as closed there because of
+  // All Saints' Day (31 Oct 2026) — confirm with AW whether Saturdays are normally open.
+  oppettider: [
+    { dag: "Monday – Friday", tid: "09–17" },
+    { dag: "Saturday", tid: "Closed" },
+    { dag: "Sunday", tid: "Closed" },
+  ],
   karta:
     "https://www.google.com/maps/search/?api=1&query=A.W.+Bauer+%26+Co+Brunnsgatan+4+Stockholm",
 } as const;

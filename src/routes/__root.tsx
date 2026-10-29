@@ -127,6 +127,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             addressLocality: "Stockholm",
             addressCountry: "SE",
           },
+          openingHours: "Mo-Fr 09:00-17:00",
           sameAs: [
             "https://www.instagram.com/a.w.bauer.co/",
             "https://www.facebook.com/awbauerco",

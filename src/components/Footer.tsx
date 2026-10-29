@@ -33,6 +33,13 @@ export function Footer() {
                 {FORETAG.epost}
               </a>
             </li>
+            <li className="pt-2">
+              {FORETAG.oppettider.map((o) => (
+                <span key={o.dag} className="block">
+                  {o.dag}: {o.tid}
+                </span>
+              ))}
+            </li>
             <li className="flex gap-4 pt-2">
               <a href={FORETAG.instagram} target="_blank" rel="noreferrer" className="hover:text-foreground">
                 Instagram

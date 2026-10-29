@@ -4,6 +4,7 @@ import { Heading } from "@/components/Paint";
 import { Reveal } from "@/components/Reveal";
 import { FORETAG, TAGLINE } from "@/lib/foretag";
 import { skickaMeddelande } from "@/lib/skicka";
+import { FormFalt } from "@/components/FormFalt";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -33,7 +34,7 @@ function Contact() {
     const fd = new FormData(e.currentTarget);
     try {
       await skickaMeddelande({
-        namn: String(fd.get("namn") ?? ""),
+        namn: `${fd.get("namn") ?? ""} ${fd.get("efternamn") ?? ""}`.trim(),
         epost: String(fd.get("epost") ?? ""),
         telefon: String(fd.get("telefon") ?? ""),
         meddelande: String(fd.get("meddelande") ?? ""),
@@ -99,6 +100,16 @@ function Contact() {
               </dd>
             </div>
             <div>
+              <dt className="eyebrow">Opening hours</dt>
+              <dd className="mt-2 space-y-1 text-muted-foreground">
+                {FORETAG.oppettider.map((o) => (
+                  <p key={o.dag}>
+                    {o.dag}: {o.tid}
+                  </p>
+                ))}
+              </dd>
+            </div>
+            <div>
               <dt className="eyebrow">Follow us</dt>
               <dd className="mt-2 flex gap-4 text-muted-foreground">
                 <a href={FORETAG.instagram} target="_blank" rel="noreferrer" className="hover:text-foreground">
@@ -126,38 +137,8 @@ function Contact() {
             </div>
           ) : (
             <form onSubmit={onSubmit} className="grid gap-5 rounded-sm border border-line bg-card p-8">
-              <h2 className="text-2xl">Send a message</h2>
-              <div>
-                <label htmlFor="k-namn" className="text-sm font-medium">
-                  Name
-                </label>
-                <input id="k-namn" name="namn" required autoComplete="name" className="field mt-2" />
-              </div>
-              <div>
-                <label htmlFor="k-epost" className="text-sm font-medium">
-                  Email
-                </label>
-                <input
-                  id="k-epost"
-                  name="epost"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  className="field mt-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="k-telefon" className="text-sm font-medium">
-                  Phone (optional)
-                </label>
-                <input id="k-telefon" name="telefon" type="tel" autoComplete="tel" className="field mt-2" />
-              </div>
-              <div>
-                <label htmlFor="k-meddelande" className="text-sm font-medium">
-                  Message
-                </label>
-                <textarea id="k-meddelande" name="meddelande" rows={5} required className="field mt-2" />
-              </div>
+              <h2 className="text-2xl">What can we do for you?</h2>
+              <FormFalt />
               <label className="flex items-start gap-3 text-sm text-muted-foreground">
                 <input type="checkbox" required className="mt-1 accent-primary" />
                 <span>
@@ -172,7 +153,7 @@ function Contact() {
               {fel && <p className="text-sm text-destructive">{fel}</p>}
               <div>
                 <button type="submit" disabled={skickar} className="btn-base btn-primary">
-                  {skickar ? "Sending …" : "Send message"}
+                  {skickar ? "Sending …" : "Send"}
                 </button>
               </div>
             </form>
