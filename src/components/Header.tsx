@@ -1,139 +1,115 @@
-import { Link } from "@tanstack/react-router";
-import { Phone } from "lucide-react";
-import { useState } from "react";
-import { FORETAG } from "@/lib/foretag";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { Wordmark } from "@/components/Brand";
 
 const VANSTER = [
-  { to: "/", label: "Home" },
   { to: "/atelier", label: "Atelier" },
   { to: "/bespoke-shirt", label: "Bespoke Shirt" },
 ] as const;
 
 const HOGER = [{ to: "/contact", label: "Contact" }] as const;
 
-const ALLA = [...VANSTER, ...HOGER];
+const LANK =
+  "label opacity-75 transition-opacity duration-500 hover:opacity-100 [&.active]:opacity-100";
 
-const LANK_KLASS =
-  "text-sm font-medium whitespace-nowrap text-primary-foreground/70 transition-colors duration-300 hover:text-primary-foreground";
-const LANK_AKTIV = "text-sm font-medium text-primary-foreground";
-
+/**
+ * Fixed header. On the home page it starts transparent over the dark hero and turns
+ * to kraft paper once the hero has scrolled away; on every other page it is kraft from the start.
+ */
 export function Header() {
   const [oppen, setOppen] = useState(false);
+  const [scrollat, setScrollat] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const overHero = pathname === "/" && !scrollat;
+
+  useEffect(() => {
+    const onScroll = () => setScrollat(window.scrollY > window.innerHeight * 0.85);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname]);
+
+  useEffect(() => setOppen(false), [pathname]);
+
+  const ljus = overHero && !oppen;
 
   return (
-    <header className="sticky top-4 z-50 px-4">
-      <div className="relative mx-auto max-w-6xl">
-        <div className="flex h-16 items-center justify-between gap-6 rounded-full bg-primary px-6 text-primary-foreground shadow-lg shadow-black/10 md:grid md:grid-cols-[1fr_auto_1fr] md:px-6 lg:px-10">
-          {/* Vänster */}
-          <nav className="hidden items-center gap-5 md:flex lg:gap-8" aria-label="Main menu">
-            {VANSTER.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                activeOptions={{ exact: l.to === "/" }}
-                className={LANK_KLASS}
-                activeProps={{ className: LANK_AKTIV }}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,color,border-color] duration-700 ${
+        ljus
+          ? "border-b border-transparent text-ivory"
+          : "border-b border-line bg-kraft/95 text-ink backdrop-blur-sm"
+      }`}
+    >
+      <div className="container-page grid h-20 grid-cols-[1fr_auto_1fr] items-center gap-6">
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Main menu">
+          {VANSTER.map((l) => (
+            <Link key={l.to} to={l.to} className={LANK}>
+              {l.label}
+            </Link>
+          ))}
+        </nav>
 
-          {/* Logga i mitten */}
+        <button
+          type="button"
+          className="label justify-self-start md:hidden"
+          aria-expanded={oppen}
+          aria-controls="mobilmeny"
+          onClick={() => setOppen((o) => !o)}
+        >
+          {oppen ? "Close" : "Menu"}
+        </button>
+
+        <Link to="/" aria-label="A.W. Bauer & Co. — home" className="block">
+          <Wordmark className="w-44 sm:w-56" label="A.W. Bauer & Co." />
+        </Link>
+
+        <nav className="hidden items-center justify-end gap-8 md:flex" aria-label="Secondary menu">
+          {HOGER.map((l) => (
+            <Link key={l.to} to={l.to} className={LANK}>
+              {l.label}
+            </Link>
+          ))}
           <Link
-            to="/"
-            className="flex flex-col items-start leading-none md:items-center"
-            onClick={() => setOppen(false)}
+            to="/appointment"
+            className={`label border px-4 py-2.5 transition-colors duration-500 ${
+              ljus
+                ? "border-ivory/60 hover:bg-ivory hover:text-ink"
+                : "border-ink/40 hover:border-green hover:bg-green hover:text-ivory"
+            }`}
           >
-            <span className="font-display text-lg font-medium tracking-tight">A.W. Bauer &amp; Co.</span>
-            <span className="mt-1 text-[0.65rem] uppercase tracking-[0.18em] text-primary-foreground/70">
-              {FORETAG.ort} · Since {FORETAG.sedan}
-            </span>
+            Book a Consultation
           </Link>
+        </nav>
 
-          {/* Höger */}
-          <nav
-            className="hidden items-center justify-end gap-4 md:flex lg:gap-6"
-            aria-label="Secondary menu"
-          >
-            {HOGER.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className={LANK_KLASS}
-                activeProps={{ className: LANK_AKTIV }}
-              >
-                {l.label}
-              </Link>
-            ))}
-            <a
-              href={`tel:${FORETAG.telefonLank}`}
-              aria-label={`Call ${FORETAG.telefon}`}
-              className="flex items-center gap-2 whitespace-nowrap text-sm font-medium text-primary-foreground"
-            >
-              <Phone className="size-4" aria-hidden="true" />
-              <span className="hidden xl:inline">{FORETAG.telefon}</span>
-            </a>
-            <Link
-              to="/appointment"
-              className="rounded-full bg-primary-foreground px-5 py-2.5 text-sm whitespace-nowrap font-medium text-primary transition-opacity duration-300 hover:opacity-90"
-            >
-              Book a Consultation
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-5 md:hidden">
-            <a
-              href={`tel:${FORETAG.telefonLank}`}
-              aria-label={`Call ${FORETAG.telefon}`}
-              className="text-primary-foreground"
-            >
-              <Phone className="size-5" aria-hidden="true" />
-            </a>
-            <button
-              type="button"
-              aria-label={oppen ? "Close menu" : "Open menu"}
-              aria-expanded={oppen}
-              onClick={() => setOppen((o) => !o)}
-            >
-              <svg width="26" height="16" viewBox="0 0 26 16" aria-hidden="true">
-                <path
-                  d={oppen ? "M3 2l20 12M3 14L23 2" : "M0 1h26M0 8h26M0 15h26"}
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {oppen && (
-          <nav
-            className="absolute inset-x-0 top-full mt-2 flex flex-col rounded-3xl bg-primary px-6 py-4 text-primary-foreground shadow-lg shadow-black/10 md:hidden"
-            aria-label="Mobile menu"
-          >
-            {ALLA.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                onClick={() => setOppen(false)}
-                className={`py-3 ${LANK_KLASS}`}
-                activeProps={{ className: `py-3 ${LANK_AKTIV}` }}
-                activeOptions={{ exact: l.to === "/" }}
-              >
-                {l.label}
-              </Link>
-            ))}
-            <Link
-              to="/appointment"
-              onClick={() => setOppen(false)}
-              className="mt-3 rounded-full bg-primary-foreground px-5 py-3 text-center text-sm font-medium text-primary"
-            >
-              Book a Consultation
-            </Link>
-          </nav>
-        )}
+        <Link to="/appointment" className="label justify-self-end md:hidden">
+          Book
+        </Link>
       </div>
+
+      {oppen && (
+        <nav
+          id="mobilmeny"
+          aria-label="Mobile menu"
+          className="paper flex h-[calc(100svh-5rem)] flex-col justify-between border-t border-line px-5 pt-10 pb-12 md:hidden"
+        >
+          <ul className="space-y-6">
+            {[
+              { to: "/", label: "Home" },
+              ...VANSTER,
+              ...HOGER,
+              { to: "/appointment", label: "Book a Consultation" },
+            ].map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} className="font-display text-3xl font-light">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="voice text-ink-soft">Brunnsgatan 4, Stockholm</p>
+        </nav>
+      )}
     </header>
   );
 }

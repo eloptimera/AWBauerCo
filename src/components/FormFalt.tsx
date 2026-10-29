@@ -5,13 +5,19 @@ export function FormFalt({ meddelandeKravs = true }: { meddelandeKravs?: boolean
     <>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="f-namn" className="text-sm font-medium">
+          <label htmlFor="f-namn" className="label text-ink-soft">
             Name
           </label>
-          <input id="f-namn" name="namn" required autoComplete="given-name" className="field mt-2" />
+          <input
+            id="f-namn"
+            name="namn"
+            required
+            autoComplete="given-name"
+            className="field mt-3"
+          />
         </div>
         <div>
-          <label htmlFor="f-efternamn" className="text-sm font-medium">
+          <label htmlFor="f-efternamn" className="label text-ink-soft">
             Surname
           </label>
           <input
@@ -19,11 +25,11 @@ export function FormFalt({ meddelandeKravs = true }: { meddelandeKravs?: boolean
             name="efternamn"
             required
             autoComplete="family-name"
-            className="field mt-2"
+            className="field mt-3"
           />
         </div>
         <div>
-          <label htmlFor="f-epost" className="text-sm font-medium">
+          <label htmlFor="f-epost" className="label text-ink-soft">
             Mail
           </label>
           <input
@@ -32,18 +38,24 @@ export function FormFalt({ meddelandeKravs = true }: { meddelandeKravs?: boolean
             type="email"
             required
             autoComplete="email"
-            className="field mt-2"
+            className="field mt-3"
           />
         </div>
         <div>
-          <label htmlFor="f-telefon" className="text-sm font-medium">
+          <label htmlFor="f-telefon" className="label text-ink-soft">
             Phone
           </label>
-          <input id="f-telefon" name="telefon" type="tel" autoComplete="tel" className="field mt-2" />
+          <input
+            id="f-telefon"
+            name="telefon"
+            type="tel"
+            autoComplete="tel"
+            className="field mt-3"
+          />
         </div>
       </div>
       <div>
-        <label htmlFor="f-meddelande" className="text-sm font-medium">
+        <label htmlFor="f-meddelande" className="label text-ink-soft">
           What’s on your mind?
         </label>
         <textarea
@@ -51,7 +63,7 @@ export function FormFalt({ meddelandeKravs = true }: { meddelandeKravs?: boolean
           name="meddelande"
           rows={5}
           required={meddelandeKravs}
-          className="field mt-2"
+          className="field mt-3"
         />
       </div>
     </>

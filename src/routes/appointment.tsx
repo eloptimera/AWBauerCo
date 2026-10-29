@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Heading } from "@/components/Paint";
-import { Reveal } from "@/components/Reveal";
+import { Tjader } from "@/components/Brand";
 import { FORETAG } from "@/lib/foretag";
 import { BESPOKE_SHIRT, HEAD_CUTTER, PRISER } from "@/lib/innehall";
 import { skickaMeddelande } from "@/lib/skicka";
@@ -63,16 +62,16 @@ function Appointment() {
 
   if (klart) {
     return (
-      <section className="container-page py-28">
-        <div className="mx-auto max-w-xl rounded-sm border border-line bg-card p-10 text-center">
-          <p className="eyebrow">Thank you</p>
-          <h1 className="mt-5 text-3xl">Your request has been received</h1>
-          <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-            We will be in touch to confirm your appointment. You are also welcome to call us at{" "}
-            {FORETAG.telefon}.
+      <section className="paper flex min-h-[80vh] items-center pt-32 pb-24">
+        <div className="container-page flex flex-col items-center text-center">
+          <Tjader className="w-14 text-green" />
+          <h1 className="mt-10 text-4xl">Thank you</h1>
+          <p className="voice measure mt-6 text-xl text-ink-soft">
+            Your request has been received. We will be in touch to confirm your appointment. You are
+            also welcome to call us at {FORETAG.telefon}.
           </p>
-          <Link to="/" className="btn-base btn-outline mt-8">
-            Back to home
+          <Link to="/" className="btn-base btn-outline mt-12">
+            Back to the house
           </Link>
         </div>
       </section>
@@ -81,44 +80,47 @@ function Appointment() {
 
   return (
     <>
-      <section className="container-page pt-16 pb-12 sm:pt-24">
-        <Reveal>
-          <p className="eyebrow">Appointment</p>
-          <Heading as="h1" className="mt-6 max-w-2xl text-4xl leading-[1.12] sm:text-5xl">
-            {BESPOKE_SHIRT.cta}
-          </Heading>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-            {HEAD_CUTTER.text[1]}
-          </p>
-        </Reveal>
+      <section className="study pt-40 pb-20 sm:pt-48">
+        <div className="container-page grid gap-12 md:grid-cols-12">
+          <div className="md:col-span-7">
+            <h1 className="text-4xl sm:text-6xl">{BESPOKE_SHIRT.cta}</h1>
+            <p className="voice measure mt-8 text-xl text-ivory/80">{HEAD_CUTTER.text[1]}</p>
+          </div>
+          <dl className="space-y-6 md:col-span-4 md:col-start-9 md:self-end">
+            <div>
+              <dt className="label text-brass">Atelier</dt>
+              <dd className="mt-2 text-ivory/80">{FORETAG.adress}</dd>
+            </div>
+            <div>
+              <dt className="label text-brass">Hours</dt>
+              <dd className="mt-2 text-ivory/80">
+                {FORETAG.oppettider.map((o) => (
+                  <span key={o.dag} className="block">
+                    {o.dag} {o.tid}
+                  </span>
+                ))}
+              </dd>
+            </div>
+          </dl>
+        </div>
       </section>
 
-      <section className="container-page pb-24">
-        <Reveal>
-          <form
-            onSubmit={onSubmit}
-            className="grid max-w-3xl gap-6 rounded-sm border border-line bg-card p-8 sm:p-10"
-          >
-            <h2 className="text-2xl">What can we do for you?</h2>
+      <section className="paper py-20 sm:py-28">
+        <div className="container-page">
+          <form onSubmit={onSubmit} className="mx-auto grid max-w-3xl gap-8">
+            <h2 className="text-center text-3xl sm:text-4xl">What can we do for you?</h2>
             <FormFalt meddelandeKravs={false} />
 
-            <div className="sm:max-w-xs">
-              <label htmlFor="datum" className="text-sm font-medium">
-                Preferred date (optional)
-              </label>
-              <input id="datum" name="datum" type="date" className="field mt-2" />
-            </div>
-
             <fieldset>
-              <legend className="text-sm font-medium">What are you interested in?</legend>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <legend className="label text-ink-soft">What are you interested in?</legend>
+              <div className="mt-4 flex flex-wrap gap-2">
                 {PRISER.lista.map(({ plagg: p }) => (
                   <label
                     key={p}
-                    className={`cursor-pointer rounded-lg border px-4 py-2 text-sm transition-colors duration-300 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring ${
+                    className={`cursor-pointer border px-4 py-2.5 font-display text-xs tracking-[0.2em] uppercase transition-colors duration-500 has-[:focus-visible]:outline has-[:focus-visible]:outline-brass ${
                       plagg.includes(p)
-                        ? "border-primary bg-primary text-primary-foreground"
-                        : "border-line hover:bg-sand"
+                        ? "border-green bg-green text-ivory"
+                        : "border-ink/30 hover:border-ink"
                     }`}
                   >
                     <input
@@ -133,27 +135,38 @@ function Appointment() {
               </div>
             </fieldset>
 
-            <label className="flex items-start gap-3 text-sm text-muted-foreground">
-              <input type="checkbox" required className="mt-1 accent-primary" />
+            <div className="sm:max-w-xs">
+              <label htmlFor="datum" className="label text-ink-soft">
+                Preferred date (optional)
+              </label>
+              <input id="datum" name="datum" type="date" className="field mt-3" />
+            </div>
+
+            <label className="flex items-start gap-3 text-base text-ink-soft">
+              <input type="checkbox" required className="mt-1.5 accent-green" />
               <span>
                 I agree that {FORETAG.namn} stores my details in order to respond to my request.
                 Read more in our{" "}
-                <Link to="/privacy-policy" className="underline">
+                <Link to="/privacy-policy" className="underline underline-offset-4">
                   privacy policy
                 </Link>
                 .
               </span>
             </label>
 
-            {fel && <p className="text-sm text-destructive">{fel}</p>}
+            {fel && (
+              <p role="alert" className="text-destructive">
+                {fel}
+              </p>
+            )}
 
-            <div>
-              <button type="submit" disabled={skickar} className="btn-base btn-primary">
+            <div className="text-center">
+              <button type="submit" disabled={skickar} className="btn-base btn-primary min-w-56">
                 {skickar ? "Sending …" : "Send"}
               </button>
             </div>
           </form>
-        </Reveal>
+        </div>
       </section>
     </>
   );

@@ -4,20 +4,85 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Self-hosted fonts (no Google Fonts requests — faster, and no visitor data sent to Google). */
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/jost-latin-300-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/jost-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/jost-latin-500-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/eb-garamond-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/eb-garamond-latin-500-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/eb-garamond-latin-400-italic.woff2") format("woff2");
+}
+
+
 /*
- * Designsystem – RT Anderssons Måleri AB
- * Varm off-white bakgrund, antracit text, mörkblå accent.
- * Rubriker och brödtext: Young Serif.
+ * A.W. Bauer & Co. — design system
+ *
+ * Material, not decoration: the kraft paper of the shopping bag, the bottle green of
+ * a gentleman's study, mahogany, and patinated brass used sparingly.
+ * Type: Jost (geometric, echoes the A.W. BAUER wordmark) for display and navigation,
+ * EB Garamond for reading text and the italic voice.
  */
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --font-display: "Young Serif", Georgia, serif;
-  --font-sans: "Young Serif", Georgia, serif;
+  --radius-sm: 0px;
+  --radius-md: 1px;
+  --radius-lg: 2px;
+  --radius-xl: 2px;
+  --radius-2xl: 2px;
+  --font-display: "Jost", "Futura", "Century Gothic", sans-serif;
+  --font-serif: "EB Garamond", "Garamond", Georgia, serif;
+  --font-sans: "EB Garamond", "Garamond", Georgia, serif;
+
+  --color-kraft: var(--kraft);
+  --color-kraft-deep: var(--kraft-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-green: var(--green);
+  --color-green-deep: var(--green-deep);
+  --color-mahogany: var(--mahogany);
+  --color-brass: var(--brass);
+  --color-ivory: var(--ivory);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -37,35 +102,41 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-sand: var(--sand);
-  --color-tint: var(--tint);
   --color-line: var(--line);
 }
 
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.968 0.006 85);
-  --foreground: oklch(0.253 0 0);
-  --card: oklch(0.985 0.004 85);
-  --card-foreground: oklch(0.253 0 0);
-  --popover: oklch(0.985 0.004 85);
-  --popover-foreground: oklch(0.253 0 0);
-  --primary: oklch(0.336 0.048 254);
-  --primary-foreground: oklch(0.98 0.004 85);
-  --secondary: oklch(0.935 0.008 85);
-  --secondary-foreground: oklch(0.253 0 0);
-  --muted: oklch(0.935 0.008 85);
-  --muted-foreground: oklch(0.505 0.012 80);
-  --accent: oklch(0.336 0.048 254);
-  --accent-foreground: oklch(0.98 0.004 85);
-  --destructive: oklch(0.52 0.19 27);
-  --destructive-foreground: oklch(0.98 0.004 85);
-  --border: oklch(0.885 0.009 85);
-  --input: oklch(0.885 0.009 85);
-  --ring: oklch(0.336 0.048 254);
-  --sand: oklch(0.925 0.012 82);
-  --tint: oklch(0.934 0.014 80);
-  --line: oklch(0.87 0.01 85);
+  --kraft: #e3d6bd;
+  --kraft-deep: #cdbb98;
+  --ivory: #f1eadb;
+  --ink: #18201b;
+  --ink-soft: #4b4c40;
+  --green: #1d3328;
+  --green-deep: #12211a;
+  --mahogany: #3f2219;
+  --brass: #a8895a;
+
+  --radius: 0px;
+  --background: var(--kraft);
+  --foreground: var(--ink);
+  --card: var(--ivory);
+  --card-foreground: var(--ink);
+  --popover: var(--ivory);
+  --popover-foreground: var(--ink);
+  --primary: var(--green);
+  --primary-foreground: var(--ivory);
+  --secondary: var(--kraft-deep);
+  --secondary-foreground: var(--ink);
+  --muted: var(--kraft-deep);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--brass);
+  --accent-foreground: var(--ink);
+  --destructive: #8c2a1c;
+  --destructive-foreground: var(--ivory);
+  --border: color-mix(in oklab, var(--ink) 18%, transparent);
+  --input: color-mix(in oklab, var(--ink) 35%, transparent);
+  --ring: var(--brass);
+  --line: color-mix(in oklab, var(--ink) 18%, transparent);
 }
 
 @layer base {
@@ -73,11 +144,19 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
+    background-color: var(--color-kraft);
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-size: 1.1875rem;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "onum";
   }
 
   h1,
@@ -85,79 +164,126 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.015em;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
   }
+
+  ::selection {
+    background: var(--color-green);
+    color: var(--color-ivory);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-brass);
+    outline-offset: 4px;
+  }
+}
+
+/* Paper grain — a very light fibre texture over kraft sections. */
+@utility paper {
+  background-color: var(--color-kraft);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .32  0 0 0 0 .25  0 0 0 0 .15  0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@utility study {
+  background-color: var(--color-green-deep);
+  color: var(--color-ivory);
 }
 
 @utility container-page {
   width: 100%;
   margin-inline: auto;
-  max-width: 78rem;
-  padding-inline: 1.5rem;
+  max-width: 76rem;
+  padding-inline: 1.25rem;
+  @media (min-width: 40rem) {
+    padding-inline: 2rem;
+  }
 }
 
-@utility eyebrow {
+/* Small tracked label — used only where it names what follows (steps, sections, prices). */
+@utility label {
+  font-family: var(--font-display);
   font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  font-weight: 400;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--color-muted-foreground);
+}
+
+/* The italic serif voice, as on AW's own forms. */
+@utility voice {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+@utility measure {
+  max-width: 34em;
 }
 
 @utility btn-base {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  border-radius: var(--radius);
-  padding: 0.9rem 1.6rem;
-  font-size: 0.92rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  gap: 0.75rem;
+  min-height: 3.25rem;
+  padding: 0.85rem 2rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   transition:
-    background-color 300ms ease,
-    color 300ms ease,
-    border-color 300ms ease,
-    opacity 300ms ease;
+    background-color 500ms ease,
+    color 500ms ease,
+    border-color 500ms ease;
 }
 
 @utility btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-primary-foreground);
+  background-color: var(--color-green);
+  color: var(--color-ivory);
   &:hover {
-    opacity: 0.88;
+    background-color: var(--color-green-deep);
   }
 }
 
 @utility btn-outline {
-  border: 1px solid var(--color-line);
-  color: var(--color-foreground);
+  border: 1px solid currentColor;
   &:hover {
-    background-color: var(--color-sand);
+    background-color: color-mix(in oklab, currentColor 8%, transparent);
   }
 }
 
+/* Form field — framed box, italic serif input like AW's current form. */
 @utility field {
   width: 100%;
-  background-color: var(--color-card);
-  border: 1px solid var(--color-line);
-  border-radius: 0.5rem;
-  padding: 0.75rem 0.9rem;
-  font-size: 0.95rem;
-  color: var(--color-foreground);
-  transition: border-color 250ms ease;
+  background-color: transparent;
+  border: 1px solid var(--color-input);
+  padding: 1rem 1.1rem;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--color-ink);
+  transition: border-color 300ms ease;
   &:focus {
     outline: none;
-    border-color: var(--color-ring);
+    border-color: var(--color-green);
   }
+}
+
+/* Brass double rule, as on an engraved plate. Used at most once or twice per page. */
+@utility plate-rule {
+  height: 5px;
+  border-top: 1px solid var(--color-brass);
+  border-bottom: 1px solid var(--color-brass);
+  opacity: 0.7;
 }
 
 @utility reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(12px);
   transition:
-    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 1400ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @utility reveal-in {
@@ -166,13 +292,17 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
-}
-
-/* Penseldrag som går ut till skärmens vänsterkant (matchar container-page). */
-@utility paint-bleed-left {
-  left: calc(-1 * max(1.5rem, (100vw - 78rem) / 2 + 1.5rem));
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
